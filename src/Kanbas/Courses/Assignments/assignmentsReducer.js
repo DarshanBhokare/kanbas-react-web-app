@@ -1,20 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
-import db from "../../Database";
+import { createSlice } from '@reduxjs/toolkit';
+import db from '../../Database';
 
 const initialState = {
   assignments: db.assignments,
   assignment: {
-    title: "New assignment",
-    description: "New Description",
+    title: 'New Assignment',
+    description: 'New Description',
     points: 100,
-    dueDate: "2024-10-10",
-    availableFromDate: "2024-10-10",
-    availableUntilDate: "2024-10-10",
+    dueDate: '2024-11-10',
+    availableFromDate: '2024-11-03',
+    availableUntilDate: '2024-11-14',
   },
 };
 
 const assignmentsSlice = createSlice({
-  name: "assignments",
+  name: 'assignments',
   initialState,
   reducers: {
     addAssignment: (state, action) => {
