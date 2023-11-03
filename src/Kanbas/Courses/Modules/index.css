@@ -15,22 +15,5 @@
 
 
 .list-group.wd-modules-list {
-    background-color: #fafafa; /* A shade off-white for a softer look */
-    border: 1px solid #e0e0e0; /* Adding a soft border for definition */
-    border-radius: 4px; 
-}
-
-/* Styling for the module name */
-.list-group-item.wd-module-item h5 {
-    font-size: 20px;         /* Larger font size */
-    font-weight: bold;       /* Bold font weight */
-    color: #2c2c2c;          /* Darker color for emphasis */
-    margin-bottom: 10px;    /* Spacing between title and description */
-}
-
-/* Styling for the module description */
-.list-group-item.wd-module-item p {
-    font-size: 14px;          /* Smaller than the module name */
-    color: #7d7d7d;           /* Lighter color to make it subtle */
-    margin-bottom: 0;        /* Remove any default margins */
+    background-color: white;
 }

@@ -1,29 +1,100 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import db from '../../Database';
 import './index.css';
-import { AiFillCheckCircle } from 'react-icons/ai';
-import { HiOutlineEllipsisVertical } from 'react-icons/hi2';
+import { LuGripVertical } from 'react-icons/lu';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  addModule,
+  updateModule,
+  deleteModule,
+  setModule,
+} from './modulesReducer';
 
 function ModuleList() {
   const { courseId } = useParams();
-  const modules = db.modules;
+  const modules = useSelector((state) => state.modulesReducer.modules);
+  const module = useSelector((state) => state.modulesReducer.module);
+  console.log(module);
+  const dispatch = useDispatch();
+
   return (
     <ul className="list-group wd-modules-list">
+      <li className="list-group-item mb-4">
+        <input
+          value={module.name}
+          className="form-control"
+          onChange={(e) =>
+            dispatch(
+              setModule({
+                ...module,
+                name: e.target.value,
+              })
+            )
+          }
+        />
+        <br />
+        <textarea
+          value={module.description}
+          className="form-control"
+          onChange={(e) =>
+            dispatch(
+              setModule({
+                ...module,
+                description: e.target.value,
+              })
+            )
+          }
+        />
+        <br />
+
+        <button
+          className="btn btn-primary ms-2"
+          onClick={() => dispatch(updateModule(module))}
+        >
+          Update
+        </button>
+
+        <button
+          className="btn btn-success"
+          onClick={() => dispatch(addModule({ ...module, course: courseId }))}
+        >
+          Add
+        </button>
+      </li>
+
       {modules
         .filter((module) => module.course === courseId)
         .map((module, index) => (
           <li key={index} className="list-group-item wd-module-item mb-4">
-            <div className="module-content">
-              <h5>{module.name}</h5>
-              <span class="wd-check-ellipse-button-float-end float-end">
-                <AiFillCheckCircle color="green" />
-                <HiOutlineEllipsisVertical />
-              </span>
+            <div className="wd-module-item-action-buttons float-end">
+              <button
+                className="btn btn-danger ms-1"
+                onClick={() => dispatch(deleteModule(module._id))}
+              >
+                Delete
+              </button>
+
+              <button
+                className="btn btn-success"
+                onClick={() => dispatch(setModule(module))}
+              >
+                Edit
+              </button>
             </div>
-            <div className="wd-module-body">
-              <p>{module.description}</p>
-            </div>
+            <h5>{module.name}</h5>
+            <p>{module.description}</p>
+            <p>{module._id}</p>
+            {module.lessons && (
+              <ul className="list-group">
+                {module.lessons.map((lesson, index) => (
+                  <li key={index} className="list-group-item">
+                    <LuGripVertical />
+                    {lesson.name}
+                    {/* <p>{lesson.description}</p> */}
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         ))}
     </ul>
