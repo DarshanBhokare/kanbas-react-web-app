@@ -1,26 +1,26 @@
-import db from "../../Kanbas/Database";
+import db from '../../Kanbas/Database';
 import {
   useParams,
   Navigate,
   Routes,
   Route,
   useLocation,
-} from "react-router-dom";
-import { RxHamburgerMenu } from "react-icons/rx";
-import "./index.css";
-import CourseNavigation from "./CourseNavigation";
-import Modules from "./Modules";
-import Home from "./Home";
-import Assignments from "./Assignments";
-import AssignmentEditor from "./Assignments/AssignmentEditor";
-import Grades from "./Grades";
-import AddAssignment from "./Assignments/AddAssignment";
+} from 'react-router-dom';
+import { RxHamburgerMenu } from 'react-icons/rx';
+import './index.css';
+import CourseNavigation from './CourseNavigation';
+import Modules from './Modules';
+import Home from './Home';
+import Assignments from './Assignments';
+import AssignmentEditor from './Assignments/AssignmentEditor';
+import Grades from './Grades';
+import AddAssignment from './Assignments/AddAssignment';
 
 function Courses({ courses }) {
   const { courseId } = useParams();
   const windowLocation = useLocation();
   const course = courses.find((course) => course._id === courseId);
-  const link = windowLocation.pathname.split("/"); /* To display breadcrumbs */
+  const link = windowLocation.pathname.split('/'); /* To display breadcrumbs */
   return (
     <div className="wd-course-screen">
       <nav className="wd-breadcrumb ms-2 mt-2">
@@ -36,28 +36,27 @@ function Courses({ courses }) {
       </nav>
       <hr />
       <CourseNavigation />
-      {/* <div> */}
-        <div
-          className="overflow-y-scroll position-fixed bottom-0 end-0"
-          style={{
-            left: "300px",
-            top: "50px",
-          }}
-        >
-          <Routes>
-            <Route path="/" element={<Navigate to="Home" />} />
-            <Route path="Home" element={ <Home />} />
-            <Route path="Modules" element={ <Modules /> } />
-            <Route path="Assignments" element={<Assignments />} />
-            <Route
-              path="Assignments/:assignmentId"
-              element={<AssignmentEditor />}
-            />
-            <Route path="Assignments/addAssignment" element={ <AddAssignment/> } />
-            <Route path="Grades" element={<Grades />} />
-          </Routes>
-        </div>
-      {/* </div> */}
+
+      <div
+        className="overflow-y-scroll position-fixed bottom-0 end-0"
+        style={{
+          left: '300px',
+          top: '50px',
+        }}
+      >
+        <Routes>
+          <Route path="/" element={<Navigate to="Home" />} />
+          <Route path="Home" element={<Home />} />
+          <Route path="Modules" element={<Modules />} />
+          <Route path="Assignments" element={<Assignments />} />
+          <Route
+            path="Assignments/:assignmentId"
+            element={<AssignmentEditor />}
+          />
+          <Route path="Assignments/addAssignment" element={<AddAssignment />} />
+          <Route path="Grades" element={<Grades />} />
+        </Routes>
+      </div>
     </div>
   );
 }

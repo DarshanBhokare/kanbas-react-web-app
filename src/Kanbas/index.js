@@ -46,7 +46,6 @@ function Kanbas() {
         <div className="wd-kanbas-navigation">
           <KanbasNavigation />
         </div>
-        {/* <div> */}
         <Routes>
           <Route path="/" element={<Navigate to="Dashboard" />} />
           <Route path="Account" element={<h1>Account</h1>} />
@@ -63,13 +62,11 @@ function Kanbas() {
               />
             }
           />
-          {/* <Route path="Courses" element={<Dashboard />} /> */}
           <Route
             path="Courses/:courseId/*"
             element={<Courses courses={courses} />}
           />
         </Routes>
-        {/* </div> */}
       </div>
     </Provider>
   );

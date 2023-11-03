@@ -4,10 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateAssignment, selectAssignment } from '../assignmentsReducer';
 
 function AssignmentEditor() {
-  // const assignment = db.assignments.find(
-  //   (assignment) => assignment._id === assignmentId
-  // );
-
   const { courseId, assignmentId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -41,9 +37,11 @@ function AssignmentEditor() {
         value={assignment.description}
         className="form-control"
       />
-      <div className="row mt-2">
-        <div className="col-2">Points</div>
-        <div className="col-4">
+      <div className="row mt-3 align-items-center">
+        <div className="col-auto" style={{ marginRight: '5px' }}>
+          Points
+        </div>
+        <div className="col">
           <input
             onChange={(e) =>
               setAssignment({ ...assignment, points: e.target.value })
@@ -54,19 +52,15 @@ function AssignmentEditor() {
         </div>
       </div>
       <br />
-      <div className="d-flex align-items-center">
-        <p className="mb-0" style={{ marginBottom: '5px' }}>
-          Assign
-        </p>
-
+      <div className=" d-flex style={{marginTop: '20px', alignItems: 'center'}}">
+        <p style={{ marginRight: '10px' }}>Assign</p>
         <div
-          className="container"
+          className="container ms-2"
           style={{
             maxWidth: '600px',
             border: '1px solid #e0e0e0',
             padding: '20px',
-            borderRadius: '8px',
-            marginTop: '5px',
+            borderRadius: '5px',
           }}
         >
           <div className="row mt-2">
