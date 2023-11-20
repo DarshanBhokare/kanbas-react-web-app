@@ -1,8 +1,8 @@
-import ModuleList from "./ModuleList";
+import ModuleList from './ModuleList';
 import './index.css';
 import { HiOutlineEllipsisVertical } from 'react-icons/hi2';
 import { AiOutlinePlus } from 'react-icons/ai';
-import CourseHeader from "../CourseHeader";
+import CourseHeader from '../CourseHeader';
 
 function Modules() {
   return (

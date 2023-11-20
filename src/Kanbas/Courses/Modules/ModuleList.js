@@ -1,22 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './index.css';
 import { LuGripVertical } from 'react-icons/lu';
 import { useSelector, useDispatch } from 'react-redux';
+import * as service from './service';
 import {
   addModule,
   updateModule,
   deleteModule,
   setModule,
+  setModules,
 } from './modulesReducer';
 
 function ModuleList() {
   const { courseId } = useParams();
+  useEffect(() => {
+    service
+      .findModulesForCourses(courseId)
+      .then((modules) => dispatch(setModules(modules)));
+  }, [courseId]);
   const modules = useSelector((state) => state.modulesReducer.modules);
   const module = useSelector((state) => state.modulesReducer.module);
   console.log(module);
   const dispatch = useDispatch();
 
+  const handleAddModule = () => {
+    service.createModuleForCourse(courseId, module).then((module) => {
+      dispatch(addModule(module));
+    });
+  };
+
+  const handleDeleteModule = (moduleId) => {
+    service.deleteModule(moduleId).then((status) => {
+      dispatch(deleteModule(moduleId));
+    });
+  };
+
+  const handleUpdateModule = async (module) => {
+    const status = await service.updateModule(module);
+    dispatch(updateModule(module));
+    dispatch(
+      setModule({ name: 'Module Name', description: 'Module Description' })
+    );
+  };
   return (
     <ul className="list-group wd-modules-list">
       <li className="list-group-item mb-4">
@@ -49,15 +75,12 @@ function ModuleList() {
 
         <button
           className="btn btn-primary ms-2"
-          onClick={() => dispatch(updateModule(module))}
+          onClick={() => handleUpdateModule(module)}
         >
           Update
         </button>
 
-        <button
-          className="btn btn-success"
-          onClick={() => dispatch(addModule({ ...module, course: courseId }))}
-        >
+        <button className="btn btn-success" onClick={handleAddModule}>
           Add
         </button>
       </li>
@@ -69,7 +92,7 @@ function ModuleList() {
             <div className="wd-module-item-action-buttons float-end">
               <button
                 className="btn btn-danger ms-1"
-                onClick={() => dispatch(deleteModule(module._id))}
+                onClick={() => handleDeleteModule(module._id)}
               >
                 Delete
               </button>
