@@ -13,7 +13,7 @@ const modulesSlice = createSlice({
   initialState,
   reducers: {
     addModule: (state, action) => {
-      state.modules = [...action.payload, ...state.modules];
+      state.modules = [action.payload, ...state.modules];
     },
     deleteModule: (state, action) => {
       state.modules = state.modules.filter(
