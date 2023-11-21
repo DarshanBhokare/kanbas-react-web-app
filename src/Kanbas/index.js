@@ -79,6 +79,19 @@ function Kanbas() {
             }
           />
           <Route path="Courses/:courseId/*" element={<Courses />} />
+          <Route
+            path="Courses/"
+            element={
+              <Dashboard
+                courses={courses}
+                course={course}
+                setCourse={setCourse}
+                addNewCourse={addNewCourse}
+                deleteCourse={deleteCourse}
+                updateCourse={updateCourse}
+              />
+            }
+          />
         </Routes>
       </div>
     </Provider>

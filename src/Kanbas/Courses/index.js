@@ -24,6 +24,7 @@ function Courses({ courses }) {
     process.env.REACT_APP_API_BASE || 'http://localhost:4000/api';
   const URL = `${API_BASE}/courses`;
   const [course, setCourse] = useState({});
+
   const findCourseById = async (courseId) => {
     console.log(courseId);
     const response = await axios.get(`${URL}/${courseId}`);
