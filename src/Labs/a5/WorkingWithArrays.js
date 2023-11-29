@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 function WorkingWithArrays() {
+  const API_BASE =
+    process.env.REACT_APP_API_BASE_LAB || 'http://localhost:4000/a5';
+
   const [todo, setTodo] = useState({
     id: 1,
     title: 'NodeJS Assignment',
@@ -58,7 +61,7 @@ function WorkingWithArrays() {
     fetchTodos();
   }, []);
 
-  const API = 'http://localhost:4000/a5/todos';
+  const API = `${API_BASE}/todos`;
   return (
     <div>
       <h3>Working with Arrays</h3>
