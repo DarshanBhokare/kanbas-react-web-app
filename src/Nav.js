@@ -33,6 +33,9 @@ function Nav() {
       >
         Kanbas
       </Link>
+      <Link className="nav-link" to="/project">
+        Project
+      </Link>
     </nav>
   );
 }
